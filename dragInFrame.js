@@ -137,10 +137,12 @@
     };
 
     Plugin.prototype.returnCoords = function () {
-        var x = Math.floor( parseInt( this.$image.css('left') ) * - 1 ),
-            y = Math.floor( parseInt( this.$image.css('top') ) * - 1 );
+        var fromX = Math.floor( parseInt( this.$image.css('left') ) * - 1 ),
+            fromY = Math.floor( parseInt( this.$image.css('top') ) * - 1 )
+            toX   = fromX - this.options.width * - 1,
+            toY   = fromY - this.options.height * - 1;;
 
-        this.result = { x: x, y: y, w: this.options.width, h: this.options.height };
+        this.result = { fromX: fromX, fromY: fromY, toX: toX, toY: toY, width: this.options.width, height: this.options.height };
 
         this.options.onChange.call( this.image, this.result );
 
