@@ -128,7 +128,7 @@
             left = checkContainerBounds( ( this.originalImageCoords.x + ( ev.pageX - this.mouseCoords.x ) ), this.$image.width(), this.options.width );
 
         this.$image.css({
-            top : top,
+            top: top,
             left: left
         });
 
@@ -142,7 +142,14 @@
             toX   = fromX - this.options.width * - 1,
             toY   = fromY - this.options.height * - 1;;
 
-        this.result = { fromX: fromX, fromY: fromY, toX: toX, toY: toY, width: this.options.width, height: this.options.height };
+        this.result = {
+            fromX: fromX,
+            fromY: fromY,
+            toX: toX,
+            toY: toY,
+            width: this.options.width,
+            height: this.options.height
+        };
 
         this.options.onChange.call( this.image, this.result );
 
