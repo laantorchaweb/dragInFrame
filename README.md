@@ -3,7 +3,7 @@ Drag In Frame
 
 A jQuery plugin for drag an image within a container, much like the facebook profile image effect.
 
-You have a container with an image inside, you can set the size for the container in the options or it will take wathever css width/height you put to the container element. By default you'll able to drag the image in any direction you can choose the direction by setting the fit option to horizontal or vertical.
+You have a container with an image inside, you can set the size for the container in the options or it will take wathever css width/height you put to the container element. By default you'll able to drag the image in any direction, but you can also choose the direction by setting the fit option to horizontal or vertical.
 
 You have several callbacks, when the image is loaded, when the user start draggin, while is dragging the image and when it stops. You also have a destroy method.
 
