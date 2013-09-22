@@ -37,7 +37,6 @@
         this.$image = this.$element.find('img');
 
         this.$image
-            .css({ display: 'none' })
             .wrap('<div class="draggable_area" />')
             .parent()
                 .css({

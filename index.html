@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dragInFrame</title>
+
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.3/jquery.mousewheel.min.js"></script>
+	<script src="dragInFrame.js"></script>
+
+	<style type="text/css">
+		body {
+			font-family:sans-serif;
+			font-size:13px;
+			width: 960px;
+			margin: 40px auto;
+		}
+
+		#results {
+			font-family:monospace;
+			font-size:20px;
+		}
+
+		.image {
+			overflow: hidden;
+			width: 350px;
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="image">
+		<img id="target3" class="crop_me" alt="" src="img/bansky.jpg" />
+	</div>
+	<br><br>
+	<div id="results">
+		<b>From X</b>: <span id="x"></span><br />
+		<b>From Y</b>: <span id="y"></span><br />
+		<b>To X</b>  : <span id="w"></span><br />
+		<b>To Y</b>  : <span id="h"></span><br />
+		<b>Wheel</b> : <span id="wheel"></span>
+	</div>
+	<br>
+	<fieldset>
+		<label for="width">Width:</label>
+		<input type="text" id="width">
+	</fieldset>
+	<fieldset>
+		<label for="height">Height:</label>
+		<input type="text" id="height">
+	</fieldset>
+	<br>
+	<button id="destroy">Destroy!</button>
+	<button id="fit-horizontal">Fit Image Horizontally!</button>
+	<button id="fit-vertical">Fit Image Vertically!</button>
+
+	<script>
+
+		function initDragInFrame(fits) {
+			var fitOpt = fits || 'none',
+				width  = $('#width').val() || 350,
+				height = $('#height').val() || 400;
+
+			$('.image').dragInFrame({
+				width: width,
+				height: height,
+				fits: fitOpt,
+				onImageLoad: function(d) {
+				  console.log('loaded image');
+				},
+				onStart: function(d) {
+				  	console.log('started dragging ', d);
+				},
+
+				onChange: function(d) {
+					// console.log('dragging ', d);
+					$('#x').text( d.fromX + 'px');
+					$('#y').text( d.fromY + 'px');
+					$('#w').text( d.toX + 'px');
+					$('#h').text( d.toY + 'px');
+				},
+
+				onStop: function(d) {
+					console.log('stopped dragging', d);
+				}
+				}).show();
+		}
+		$(function() {
+
+			initDragInFrame();
+
+			$('#destroy').on('click', function() {
+
+			  	$('.image').dragInFrame('destroy');
+
+			});
+
+			$('#fit-horizontal').on('click', function() {
+
+			  	$('.image').dragInFrame('destroy');
+				initDragInFrame('horizontal');
+
+			});
+
+			$('#fit-vertical').on('click', function() {
+
+			  	$('.image').dragInFrame('destroy');
+				initDragInFrame('vertical');
+
+			});
+
+
+		});
+	</script>
+
+</body>
+</html>
