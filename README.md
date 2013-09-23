@@ -46,3 +46,4 @@ $('#destroy').on('click', function() {
 
 });
 ```
+Demo
