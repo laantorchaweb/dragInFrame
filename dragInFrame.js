@@ -37,7 +37,6 @@
         this.$image = this.$element.find('img');
 
         this.$image
-            .css({ display: 'none' })
             .wrap('<div class="draggable_area" />')
             .parent()
                 .css({
@@ -99,7 +98,7 @@
                 y: parseInt( _this.$image.css('top') )
             }
 
-            _this.options.onStart.call(_this.$image[0], _this.$element );
+            _this.options.onStart.call( _this.$image[0], _this.$element );
 
         });
 
@@ -109,7 +108,7 @@
 
             _this.dragging = false;
 
-            _this.options.onStop.call(_this.$image[0], _this.result );
+            _this.options.onStop.call( _this.$image[0], _this.result );
 
         }).on('mousemove.' + _this._name, function(e) {
 
@@ -148,7 +147,8 @@
             toX: toX,
             toY: toY,
             width: this.options.width,
-            height: this.options.height
+            height: this.options.height,
+            fits: this.options.fits
         };
 
         this.options.onChange.call( this.image, this.result );
